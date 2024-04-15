@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:getx_switch_button/switch_controller.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -8,6 +10,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final SwitchController switchController = Get.put(SwitchController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,19 +41,26 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Switch(
-                  value: false,
-                  onChanged: (value) {},
+                Obx(
+                  () => Switch(
+                    activeColor: Colors.blue,
+                    value: switchController.notification.value,
+                    onChanged: (value) {
+                      switchController.setNotification(value);
+                    },
+                  ),
                 ),
               ],
             ),
           ),
-          const Text(
-            'Notification Allow',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-              color: Colors.black,
+          Obx(
+            () => Text(
+              switchController.notification.value ? switchController.text.value : 'Notification Not Allow',
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+                color: Colors.black,
+              ),
             ),
           ),
         ],
