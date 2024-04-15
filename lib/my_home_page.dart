@@ -23,6 +23,37 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Notification',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Switch(
+                  value: false,
+                  onChanged: (value) {},
+                ),
+              ],
+            ),
+          ),
+          const Text(
+            'Notification Allow',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
